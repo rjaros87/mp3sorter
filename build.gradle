@@ -1,0 +1,35 @@
+group 'pl.radoslawjaros'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = "pl.radoslawjaros.Mp3Sorter"
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    // configuration that holds jars to include in the jar
+    extraLibs
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': mainClassName
+        )
+    }
+    from {
+        configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+dependencies {
+    extraLibs group: 'com.googlecode.soundlibs', name: 'basicplayer', version: '3.0.0.0'
+    configurations.compile.extendsFrom(configurations.extraLibs)
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

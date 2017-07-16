@@ -15,8 +15,8 @@ import java.io.IOException;
 
 public class Mp3Sorter {
     private JButton playButton;
+    private JImageButton dislikeButton;
     private JTextField mp3Path;
-    private JPanel panelMain;
     private Mp3Player mp3Player;
 
     public Mp3Sorter() {
@@ -80,6 +80,18 @@ public class Mp3Sorter {
                     });
 
                     frame.add(jSlider);
+
+                    BufferedImage dislikeImgButton = ImageIO.read(this.getClass().getResource("/O4YIMU0.jpg"));
+                    BufferedImage dislikeImgButton2 = dislikeImgButton.getSubimage(73+0,16+0,110,110);
+                    dislikeButton = new JImageButton(dislikeImgButton2);
+                    dislikeButton.setFocusable(false);
+                    dislikeButton.setPreferredSize(new Dimension(112, 112));
+                    dislikeButton.setOpaque(false);
+
+                    frame.add(dislikeButton);
+
+
+
                     frame.setResizable(false);
                     frame.pack();
                     frame.setLocationRelativeTo(null);
